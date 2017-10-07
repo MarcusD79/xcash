@@ -32,15 +32,15 @@ class CNode;
 // activated: after block 15000 for all following diff retargeting events
 #define COINFIX1_BLOCK  (15000)
 
-// for now, we leave the block size at 1 MB, meaning we support roughly 2400 transactions
-// per block, which means about 160 tps
-static const unsigned int MAX_BLOCK_SIZE = 1000000;
+// for now, we leave the block size at 8 MB, meaning we support roughly 19200 transactions
+// per block
+static const unsigned int MAX_BLOCK_SIZE = 8000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int64 MIN_TX_FEE = 10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
-static const int64 MAX_MONEY = 42007680 * COIN; // maximum of 42 007 680 coins
+static const int64 MAX_MONEY = 31000000 * COIN; // maximum of 31 000 000 coins
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 static const int COINBASE_MATURITY = 10;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
@@ -547,7 +547,7 @@ public:
     {
         // Large (in bytes) low-priority (new, small-coin) transactions
         // need a fee.
-        return dPriority > COIN * 5760 / 250; // 5760 blocks found a day. Priority cutoff is 1 SMC day / 250 bytes.
+        return dPriority > COIN * 720 / 250; // 720 blocks found a day. Priority cutoff is 1 XEC day / 250 bytes.
     }
 
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const

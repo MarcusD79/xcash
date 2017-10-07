@@ -8,11 +8,10 @@ Idea is to make simple but yet secure altcoin with shielded
 transactions by default. 
 
 Current features:
- - 15 seconds block targets.
- - 25 007 680 total coins
- - no subsidy within the first 3 days and after approximately 5 years;
-    in between: 4 coins per generated block
- - difficulty retargets every 0.35 days
+ - 2 minutes block targets.
+ - 80 coins , base value, halfing every 3 years
+ - 25 000 000 total coins
+ - difficulty retargets every 3 days
  - currently peers are looked up over IRC only
 
 Development process
