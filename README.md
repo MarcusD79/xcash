@@ -1,0 +1,2 @@
+# xcash
+My altcoin
