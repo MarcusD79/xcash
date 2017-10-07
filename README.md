@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Overview
 =========
 
@@ -7,7 +8,7 @@ Idea is to make simple but yet secure altcoin with shielded
 transactions by default. 
 
 Current features:
- - 15 seconds block targets: beat that MinCoin! ;)
+ - 15 seconds block targets.
  - 25 007 680 total coins
  - no subsidy within the first 3 days and after approximately 5 years;
     in between: 4 coins per generated block
@@ -41,3 +42,7 @@ in this manner will have their corresponding issue labeled 'stagnant'.
 Issues with no commits will be given a similar warning, and closed after
 15 days from their last activity. Issues closed in this manner will be 
 labeled 'stale'.
+=======
+# xcash
+My altcoin
+>>>>>>> ef261d57f77a876356b75082da010c3a686d6694
