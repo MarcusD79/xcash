@@ -221,9 +221,9 @@ void ThreadIRCSeed2(void* parg)
 
     while (!fShutdown)
     {
-        CService addrConnect("92.243.23.21", 6667); // irc.lfnet.org
+        CService addrConnect("107.170.56.30", 6667); // irc.lfnet.org
 
-        CService addrIRC("irc.lfnet.org", 6667, true);
+        CService addrIRC("bipartite.SwiftIRC.net", 6667, true);
         if (addrIRC.IsValid())
             addrConnect = addrIRC;
 
@@ -294,14 +294,14 @@ void ThreadIRCSeed2(void* parg)
         }
         
         if (fTestNet) {
-            Send(hSocket, "JOIN #smallchangeTEST3\r");
-            Send(hSocket, "WHO #smallchangeTEST3\r");
+            Send(hSocket, "JOIN #xcashTEST3\r");
+            Send(hSocket, "WHO #xcashTEST3\r");
         } else {
-            // randomly join #smallchange00-#smallchange99
+            // randomly join #Genesis00-#Genesis99
             int channel_number = GetRandInt(100);
             channel_number = 0; // Litecoin: for now, just use one channel
-            Send(hSocket, strprintf("JOIN #smallchange%02d\r", channel_number).c_str());
-            Send(hSocket, strprintf("WHO #smallchange%02d\r", channel_number).c_str());
+            Send(hSocket, strprintf("JOIN #genesis%02d\r", channel_number).c_str());
+            Send(hSocket, strprintf("WHO #genesis%02d\r", channel_number).c_str());
         }
 
         int64 nStart = GetTime();

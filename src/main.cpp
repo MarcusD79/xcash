@@ -29,7 +29,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x384b060671f4a93948e9c168216dadb0ca2fbc54aa11c86b0345b6af1c59b2f5");
+uint256 hashGenesisBlock("0xfe978bede1dc7c44be7f38f9aa4f74ec90f35c413b78d6c98030e8c61427874b");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1180,7 +1180,7 @@ bool CTransaction::ConnectInputs(MapPrevTx inputs,
 {
     // Take over previous transactions' spent pointers
     // fBlock is true when this is called from AcceptBlock when a new best-block is added to the blockchain
-    // fMiner is true when called from the internal smallchange miner
+    // fMiner is true when called from the internal xcash miner
     // ... both are false when called from CTransaction::AcceptToMemoryPool
     if (!IsCoinBase())
     {
@@ -1927,7 +1927,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "SmallChange", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "Xcash", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }
@@ -1983,7 +1983,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb8;
         pchMessageStart[3] = 0xdb;
-        hashGenesisBlock = uint256("0xa50faf35e1dddf4a076a907fbcef6d9d1595390cdb1c818a35dae53b67ad0aa8");
+        hashGenesisBlock = uint256("0xc492a38fb239fdba87976473f2b2e68c92638127d1fa691e3d986252c60833dc");
     }
 
     //
@@ -2001,21 +2001,16 @@ bool LoadBlockIndex(bool fAllowNew)
     {
         if (!fAllowNew)
             return false;
-    
-	// Genesis block:
-	// block.nTime = 1366559428 
-	// block.nNonce = 2085386442 
-	// block.GetHash = 384b060671f4a93948e9c168216dadb0ca2fbc54aa11c86b0345b6af1c59b2f5
-	// CBlock(hash=384b060671f4a93948e9, PoW=00000951e146b0026411, ver=1,
-	//  hashPrevBlock=00000000000000000000, hashMerkleRoot=5a2e19825b,
-	//  nTime=1366559428, nBits=1e0ffff0, nNonce=2085386442, vtx=1)
-	// CTransaction(hash=5a2e19825b, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-	// CTxIn(COutPoint(0000000000, -1), coinbase 04ffff001d010441746f646f3a207265706c616365207769746820736f6d657468696e67207468617420656e7375726573206e6f207072656d696e696e6720746f6f6b20706c616365)
-	// CTxOut(error)
-	// vMerkleTree: 5a2e19825b
-        
+  
+    //    Genesis block 
+    //    block.nTime = 1507415954 
+    //    block.nNonce = 82935 
+    //    block.GetHash = fe978bede1dc7c44be7f38f9aa4f74ec90f35c413b78d6c98030e8c61427874b
+    //    CBlock(hash=fe978bede1dc7c44be7f, PoW=000008cadc9f154fb8c9, ver=1, hashPrevBlock=00000000000000000000, hashMerkleRoot=c492a38fb2, nTime=1507415954, nBits=1e0ffff0, nNonce=82935, vtx=1)
+    //    CTransaction(hash=c492a38fb2, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+ 
         // Genesis block
-        const char* pszTimestamp = "The only verdict is vengeance; a vendetta, held as a votive, not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous";
+        const char* pszTimestamp = "The only verdict is vengeance, a vendetta, held as a votive, not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2027,9 +2022,9 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1507409905;
+        block.nTime    = 1507415954;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 7084524493;
+        block.nNonce   = 82935;
 
         if (fTestNet)
         {
@@ -2041,7 +2036,7 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x5a2e19825b4162f68602039040f1e05d9f924ff00a3aff7327ca6abd6f3279bc"));
+        assert(block.hashMerkleRoot == uint256("0xc492a38fb239fdba87976473f2b2e68c92638127d1fa691e3d986252c60833dc"));
 
         // If genesis block hash does not match, then generate new genesis hash.
         if (false && block.GetHash() != hashGenesisBlock)
