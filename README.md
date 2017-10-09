@@ -9,8 +9,8 @@ transactions by default.
 
 Current features:
  - 2 minutes block targets.
- - 80 coins , base value, halfing every 3 years
- - 25 000 000 total coins
+ - 20 coins , base value, halfing every 4 years
+ - 50 000 000 total coins
  - difficulty retargets every 3 days
  - currently peers are looked up over IRC only
 
