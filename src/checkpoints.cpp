@@ -34,14 +34,14 @@ namespace Checkpoints
 */
     static MapCheckpoints mapCheckpoints =
             boost::assign::map_list_of
-            ( 11111, uint256("0x0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d"))
-            ( 33333, uint256("0x000000002dd5588a74784eaa7ab0507a18ad16a236e7b1ce69f00d7ddfb5d0a6"))
-            ( 74000, uint256("0x0000000000573993a3c9e41ce34471c079dcf5f52a0e824a81e7f953b8661a20"))
-            (105000, uint256("0x00000000000291ce28027faea320c8d2b054b2e0fe44a773f3eefb151d6bdc97"))
-            (134444, uint256("0x00000000000005b12ffd4cd315cd34ffd4a594f430ac814c91184a0d42d2b0fe"))
-            (168000, uint256("0x000000000000099e61ea72015e79632f216fe6cb33d7899acb35b75c8303b763"))
-            (193000, uint256("0x000000000000059f452a5f7340de6682a977387c17010ff6e6c3bd83ca8b1317"))
-            (210000, uint256("0x000000000000048b95347e83192f69cf0366076336c639f9b7228e9ba171342e"))
+            (151167, uint256("0x00000b8e36a4b9ccdfec4bb0ea49f657d5634c57bb043e4b0a27e4c58552a1ef"))
+            (148106, uint256("0x00000942b6bd5f734da563c47cd5ebc5d19207bdbe2e38a7f32910e2a3bcf235"))
+            (712145, uint256("0x0000010632bb5250e8c9fe7039a0769d9c5faa2013e705e73232d43b34016814"))
+            ( 35782, uint256("0x0000065f87fc6b82e1a2b3568c58a6825967e6226826877c1cd425c68d7fc5f6"))
+            (631117, uint256("0x0000045a837d3ff5f037e7f22172a7381a99d73dce7f26628f784bf44796a70a"))
+            ( 39771, uint256("0x00000e6df4ed1b8bf0a9a5113bf486b5a45d5b56d962aa182dfc2be26dcc92e3"))
+            (118476, uint256("0x000007b909adf3187828ee32b75b262de3e9dbc57d69998ec892e6e181ddbf71"))
+            (173352, uint256("0x00000d3dce4ad0850080ba784cd888779d8d2b75fda893e7f0060c5bec1c7cea"))
             ;
 
 
@@ -57,8 +57,8 @@ namespace Checkpoints
     int GetTotalBlocksEstimate()
     {
         if (fTestNet) return 0;
-        //return mapCheckpoints.rbegin()->first;
-        return 0;
+        return mapCheckpoints.rbegin()->first;
+        //return 0;
     }
 
     CBlockIndex* GetLastCheckpoint(const std::map<uint256, CBlockIndex*>& mapBlockIndex)
@@ -70,8 +70,8 @@ namespace Checkpoints
             const uint256& hash = i.second;
             std::map<uint256, CBlockIndex*>::const_iterator t = mapBlockIndex.find(hash);
             if (t != mapBlockIndex.end())
-             //   return t->second;
-             return NULL;
+              return t->second;
+             //return NULL;
         }
         return NULL;
     }
